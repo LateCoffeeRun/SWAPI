@@ -1,0 +1,19 @@
+.movieCollection{
+    display: flex;
+    overflow-x: scroll;
+    margin: 0 20px 20px 20px;
+}
+
+.charactersTableContainer{
+    margin: 45px 20px;
+}
+
+.filmsPageContainer{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.loader{
+    text-align: center;
+    margin: 20px auto;
+}
