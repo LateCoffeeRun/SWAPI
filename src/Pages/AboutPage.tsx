@@ -1,7 +1,7 @@
 import '../Style/AboutPage.css';
 
-const AboutPage = () =>{
-    return(
+const AboutPage = () => {
+    return (
         <div className="aboutPageWrapper">
             <h3>About us</h3>
 

@@ -7,32 +7,32 @@ import FilmsPage from '../Pages/FilmsPage';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const Menu = () => {
-  return (
-    <>
-        <BrowserRouter>
-            <Paper sx={{ width: 160, minWidth: 160, maxWidth: '100%' }}>
-                <MenuList>
-                    <MenuItem>
-                        <ListItemText>
-                            <Link to="/">Films</Link>
-                        </ListItemText>
-                    </MenuItem>
+    return (
+        <>
+            <BrowserRouter>
+                <Paper sx={{ width: 160, minWidth: 160, maxWidth: '100%' }}>
+                    <MenuList>
+                        <MenuItem>
+                            <ListItemText>
+                                <Link to="/" style={{ textDecoration: 'none' }}>Films</Link>
+                            </ListItemText>
+                        </MenuItem>
 
-                    <MenuItem>
-                        <ListItemText>
-                            <Link to="/AboutPage">About</Link>
-                        </ListItemText>
-                    </MenuItem>
-                </MenuList>
-            </Paper>
+                        <MenuItem>
+                            <ListItemText>
+                                <Link to="/AboutPage" style={{ textDecoration: 'none' }}>About</Link>
+                            </ListItemText>
+                        </MenuItem>
+                    </MenuList>
+                </Paper>
 
-            <Routes>
-                <Route path='/' element={<FilmsPage />} />
-                <Route path='/AboutPage' element={<AboutPage />} />
-            </Routes>
-        </BrowserRouter>
-    </>
-  );
+                <Routes>
+                    <Route path='/' element={<FilmsPage />} />
+                    <Route path='/AboutPage' element={<AboutPage />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
 export default Menu

@@ -12,7 +12,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import '../Style/FilmsPage.css';
 
 const FilmsPage = () => {
-    interface Character{
+    interface Character {
         id: number;
         name: string;
         birth_year: string;
@@ -30,61 +30,60 @@ const FilmsPage = () => {
     useEffect(() => {
         setIsMoviesLoading(true);
         fetch(filmsUrl)
-          .then(res => res.json())
-          .then(
-              (result) => {
-                setMovies(result.results);
-                setIsMoviesLoading(false);
-              },
-              (error) => {throw Error("Uh oh! Something went wrong while loading the cast :( \nPlease try again later!")})
-      }, []);
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setMovies(result.results);
+                    setIsMoviesLoading(false);
+                },
+                (error) => { throw Error("Uh oh! Something went wrong while loading the cast :( \nPlease try again later!") })
+    }, []);
 
-      function LoadCharacters(characterUrls: [])
-      {
+    function LoadCharacters(characterUrls: []) {
         setIsLoaded(false);
         setIsLoading(true);
-          Promise.all(
-              characterUrls.map((url) => {
-                  return fetch(url)
-                      .then((response) => {
-                          if (!response.ok) {
-                                setIsLoaded(false);
-                                throw Error("Uh oh! Something went wrong while loading the cast :( \nPlease try again later!");
-                          }
-                          return response.json();
-                      });
-              }))
-              .then((charData) => {
+        Promise.all(
+            characterUrls.map((url) => {
+                return fetch(url)
+                    .then((response) => {
+                        if (!response.ok) {
+                            setIsLoaded(false);
+                            throw Error("Uh oh! Something went wrong while loading the cast :( \nPlease try again later!");
+                        }
+                        return response.json();
+                    });
+            }))
+            .then((charData) => {
                 setCharacters(charData);
                 setIsLoaded(true);
                 setIsLoading(false);
-              });
-      }
+            });
+    }
 
-    return(
+    return (
         <div className='filmsPageContainer'>
             <div className='movieCollection'>
                 {
-                    isMoviesLoading 
-                    ?
+                    isMoviesLoading
+                        ?
                         <div className='loader'>
-                            <CircularProgress sx={{textAlign: "center"}} color="info"/>
+                            <CircularProgress sx={{ textAlign: "center" }} color="info" />
                         </div>
-                    :
+                        :
                         movies.map((movie, idx) => {
                             return (
                                 <>
-                                    <MovieCard key={idx} data={movie} onClick={LoadCharacters}/>
+                                    <MovieCard key={idx} data={movie} onClick={LoadCharacters} />
                                 </>
                             )
                         })
                 }
             </div>
-        
+
             <div className="charactersTableContainer">
                 {
-                    isCharactersLoaded 
-                    ? 
+                    isCharactersLoaded
+                        ?
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 500, minHeight: 500 }} size="small" aria-label="a dense table">
                                 <TableHead>
@@ -111,13 +110,13 @@ const FilmsPage = () => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                    : isCharactersLoading 
-                        ?
+                        : isCharactersLoading
+                            ?
                             <div className='loader'>
-                                <CircularProgress sx={{textAlign: "center"}} color="info"/>
+                                <CircularProgress sx={{ textAlign: "center" }} color="info" />
                             </div>
-                        :
-                            <Typography sx={{textAlign: "center"}} variant="h6" component="div">
+                            :
+                            <Typography sx={{ textAlign: "center" }} variant="h6" component="div">
                                 Please select a movie above to view its cast.
                             </Typography>
                 }

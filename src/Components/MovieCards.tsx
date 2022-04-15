@@ -10,17 +10,34 @@ const overflow = {
     "overflow": "hidden",
     "whiteSpace": "nowrap"
 }
+interface Character {
+    id: number;
+    name: string;
+    birth_year: string;
+    gender: string;
+    mass: number;
+}
 
-const MovieCard = (props) => {
+interface MovieInfo {
+    data: {
+        title: string;
+        release_date: string;
+        episode_id: number;
+        characters: Array<Character>;
+    },
+    onClick(charUrls: Array<Character>): void;
+}
+
+const MovieCard = (props: MovieInfo) => {
     return (
         <div>
-            <Card sx={{ minWidth: 275, marginTop: 0, marginRight: 1, marginBottom: 1, marginLeft: 1}}>
+            <Card sx={{ minWidth: 275, marginTop: 0, marginRight: 1, marginBottom: 1, marginLeft: 1 }}>
                 <CardContent sx={{ display: "flex" }}>
                     <div>
-                        <Typography sx={{overflow}} variant="h6" component="div">
+                        <Typography sx={{ overflow }} variant="h6" component="div">
                             {props.data.title}
                         </Typography>
-                        <Typography fontSize={14} sx={{ mb: 1.5, mt: 2 }}color="text.secondary">
+                        <Typography fontSize={14} sx={{ mb: 1.5, mt: 2 }} color="text.secondary">
                             Release date: {props.data.release_date}
                         </Typography>
                     </div>
