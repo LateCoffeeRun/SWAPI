@@ -39,7 +39,7 @@ const FilmsPage = () => {
                 (error) => { throw Error("Uh oh! Something went wrong while loading the cast :( \nPlease try again later!") })
     }, []);
 
-    function LoadCharacters(characterUrls: []) {
+    const LoadCharacters = (characterUrls: []) => {
         setIsLoaded(false);
         setIsLoading(true);
         Promise.all(
@@ -70,13 +70,7 @@ const FilmsPage = () => {
                             <CircularProgress sx={{ textAlign: "center" }} color="info" />
                         </div>
                         :
-                        movies.map((movie, idx) => {
-                            return (
-                                <>
-                                    <MovieCard key={idx} data={movie} onClick={LoadCharacters} />
-                                </>
-                            )
-                        })
+                        movies.map((movie, idx) => <MovieCard key={idx} data={movie} onClick={LoadCharacters} />)
                 }
             </div>
 
